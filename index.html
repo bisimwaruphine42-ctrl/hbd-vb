@@ -1,0 +1,734 @@
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Joyeux anniversaire, mon amour Rüced ❤️</title>
+
+  <style>
+    /* =========================
+       STYLE CSS
+    ========================= */
+
+    :root {
+      --fond: #101722;
+      --bleu-nuit: #263449;
+      --gris-argent: #c2ccd8;
+      --gris-clair: #e1e7ef;
+      --texte: #eef2f7;
+      --carte: rgba(255, 255, 255, 0.07);
+      --bordure: rgba(190, 200, 215, 0.24);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: radial-gradient(
+        ellipse at top,
+        #263449 0%,
+        #151e2b 48%,
+        #0b111a 100%
+      );
+      color: var(--texte);
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+      display: flex;
+      justify-content: center;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Grand cœur discret en arrière-plan */
+    body::before {
+      content: "♡";
+      position: fixed;
+      top: 5%;
+      right: 6%;
+      color: rgba(190, 200, 215, 0.07);
+      font: 18rem Georgia, serif;
+      pointer-events: none;
+      transform: rotate(15deg);
+      z-index: 0;
+    }
+
+    #canvas-bg {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .main-container {
+      position: relative;
+      z-index: 1;
+      max-width: 750px;
+      width: 100%;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    /* Titre principal */
+    .title-banner h1 {
+      font-family: Georgia, serif;
+      font-size: clamp(2rem, 6vw, 3.25rem);
+      color: var(--gris-clair);
+      line-height: 1.2;
+      margin-bottom: 0.8rem;
+      text-shadow: 0 3px 18px rgba(190, 200, 215, 0.16);
+      animation: pulseTitle 3s infinite alternate;
+    }
+
+    .title-banner p {
+      font-size: 1.1rem;
+      color: #c1cad6;
+      font-style: italic;
+      line-height: 1.6;
+    }
+
+    @keyframes pulseTitle {
+      from {
+        transform: scale(1);
+      }
+      to {
+        transform: scale(1.03);
+      }
+    }
+
+    /* Quatre titres romantiques */
+    .title-options {
+      width: 100%;
+    }
+
+    .title-options > h2 {
+      color: var(--gris-clair);
+      font: italic 1.45rem Georgia, serif;
+      margin-bottom: 1rem;
+    }
+
+    .title-options-grid {
+      display: grid;
+      grid-template-columns: repeat(
+        auto-fit,
+        minmax(220px, 1fr)
+      );
+      gap: 1rem;
+    }
+
+    .title-option {
+      text-align: left;
+      padding: 1.3rem;
+      border-radius: 18px;
+      background: var(--carte);
+      border: 1px solid var(--bordure);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+      transition: transform 0.3s ease;
+    }
+
+    .title-option:hover {
+      transform: translateY(-5px);
+    }
+
+    .title-option span {
+      color: #9aa8bb;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+    }
+
+    .title-option h3 {
+      color: var(--gris-clair);
+      font: italic 1.15rem Georgia, serif;
+      margin: 0.5rem 0;
+    }
+
+    .title-option p {
+      color: #c1cad6;
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+
+    /* Gâteau d'anniversaire */
+    .cake-container {
+      position: relative;
+      width: 200px;
+      height: 160px;
+      margin: 1rem 0;
+    }
+
+    .cake {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 180px;
+      height: 100px;
+    }
+
+    .layer {
+      position: absolute;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .layer-bottom {
+      bottom: 0;
+      width: 100%;
+      height: 45px;
+      background: linear-gradient(135deg, #68788e, #3f5067);
+    }
+
+    .layer-middle {
+      bottom: 40px;
+      width: 85%;
+      left: 7.5%;
+      height: 38px;
+      background: linear-gradient(135deg, #aeb9c8, #78899f);
+    }
+
+    .layer-top {
+      bottom: 75px;
+      width: 70%;
+      left: 15%;
+      height: 35px;
+      background: linear-gradient(135deg, #edf1f6, #cbd4df);
+    }
+
+    /* Bougie et flamme */
+    .candle {
+      position: absolute;
+      bottom: 110px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 12px;
+      height: 35px;
+      background: linear-gradient(to right, #9aa8bb, #e1e7ef);
+      border-radius: 4px;
+    }
+
+    .flame {
+      position: absolute;
+      top: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 14px;
+      height: 22px;
+      background: #ffd93d;
+      border-radius: 50% 50% 20% 20%;
+      box-shadow: 0 0 15px #ff922b, 0 0 25px #ffd93d;
+      animation: flicker 0.6s infinite alternate;
+      transition: opacity 0.5s ease;
+    }
+
+    .flame.off {
+      opacity: 0;
+      animation: none;
+    }
+
+    @keyframes flicker {
+      from {
+        transform: translateX(-50%) scale(1) rotate(-2deg);
+      }
+      to {
+        transform: translateX(-50%) scale(1.15) rotate(2deg);
+      }
+    }
+
+    /* Boutons */
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      background: linear-gradient(135deg, #7f8da1, #39485d);
+      border: 1px solid rgba(220, 230, 240, 0.15);
+      color: white;
+      padding: 0.9rem 1.5rem;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px) scale(1.04);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Message romantique */
+    .poem-card {
+      background: var(--carte);
+      border: 1px solid var(--bordure);
+      backdrop-filter: blur(10px);
+      border-radius: 24px;
+      padding: 2rem;
+      width: 100%;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.18);
+    }
+
+    .poem-card h2 {
+      color: var(--gris-argent);
+      margin-bottom: 1rem;
+      font-size: 1.4rem;
+    }
+
+    .poem-card p {
+      font-style: italic;
+      line-height: 1.9;
+      color: #e0e6ee;
+    }
+
+    /* Cartes de souhaits */
+    .wishes-grid {
+      display: grid;
+      grid-template-columns: repeat(
+        auto-fit,
+        minmax(200px, 1fr)
+      );
+      gap: 1rem;
+      width: 100%;
+    }
+
+    .wish-card {
+      background: var(--carte);
+      border: 1px solid var(--bordure);
+      backdrop-filter: blur(8px);
+      border-radius: 20px;
+      padding: 1.3rem;
+      transition: transform 0.3s ease;
+    }
+
+    .wish-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .wish-card .icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .wish-card h3 {
+      font-size: 1.1rem;
+      color: var(--gris-argent);
+      margin-bottom: 0.5rem;
+    }
+
+    .wish-card p {
+      font-size: 0.9rem;
+      color: #c1cad6;
+      line-height: 1.6;
+    }
+
+    /* Lettre secrète */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(6px);
+      z-index: 100;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+    }
+
+    .modal-content {
+      background: linear-gradient(145deg, #273548, #151f2d);
+      border: 1px solid var(--gris-argent);
+      border-radius: 22px;
+      padding: 2rem;
+      max-width: 500px;
+      width: 100%;
+      position: relative;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+      animation: modalAppear 0.4s ease-out;
+    }
+
+    @keyframes modalAppear {
+      from {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 12px;
+      right: 20px;
+      font-size: 1.8rem;
+      color: var(--gris-argent);
+      cursor: pointer;
+    }
+
+    .letter-body {
+      text-align: left;
+      line-height: 1.8;
+      color: #e0e6ee;
+    }
+
+    .letter-body h2 {
+      text-align: center;
+      color: var(--gris-clair);
+      margin-bottom: 1.2rem;
+      font-family: Georgia, serif;
+    }
+
+    .letter-signature {
+      margin-top: 1.5rem;
+      text-align: right;
+      font-weight: bold;
+      color: var(--gris-argent);
+    }
+
+    /* Adaptation aux petits écrans */
+    @media (max-width: 480px) {
+      body {
+        padding: 1.5rem 0.8rem;
+      }
+
+      .poem-card {
+        padding: 1.3rem;
+      }
+
+      .modal-content {
+        padding: 1.5rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Arrière-plan animé -->
+  <canvas id="canvas-bg"></canvas>
+
+  <main class="main-container">
+
+    <!-- Titre principal -->
+    <header class="title-banner">
+      <h1>Joyeux anniversaire, mon amour ❤️</h1>
+      <p>
+        Aujourd’hui, le monde est un peu plus beau,
+        car c’est le jour où tu es né…
+      </p>
+    </header>
+
+    <!-- Quatre titres romantiques -->
+    <section class="title-options">
+      <h2>Quatre pensées pour toi, mon roi ❤️</h2>
+
+      <div class="title-options-grid">
+
+        <article class="title-option">
+          <span>01</span>
+          <h3>Joyeux anniversaire, mon roi</h3>
+          <p>
+            À celui qui fait battre mon cœur
+            un peu plus fort chaque jour.
+          </p>
+        </article>
+
+        <article class="title-option">
+          <span>02</span>
+          <h3>À l’homme de ma vie</h3>
+          <p>
+            Mon amour, mon bonheur
+            et mon plus beau cadeau.
+          </p>
+        </article>
+
+        <article class="title-option">
+          <span>03</span>
+          <h3>Pour mon merveilleux BB</h3>
+          <p>
+            Que ton sourire illumine
+            cette nouvelle année de ta vie.
+          </p>
+        </article>
+
+        <article class="title-option">
+          <span>04</span>
+          <h3>Mon amour, aujourd’hui et toujours</h3>
+          <p>
+            Un jour spécial pour l’homme
+            qui rend ma vie si belle.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Gâteau d'anniversaire -->
+    <section class="cake-container" aria-label="Gâteau d'anniversaire">
+      <div class="candle">
+        <div class="flame" id="flame"></div>
+      </div>
+
+      <div class="cake">
+        <div class="layer layer-top"></div>
+        <div class="layer layer-middle"></div>
+        <div class="layer layer-bottom"></div>
+      </div>
+    </section>
+
+    <!-- Boutons interactifs -->
+    <div class="btn-group">
+      <button class="btn" id="toggleFlameBtn">
+        🕯️ Souffler / rallumer la bougie
+      </button>
+
+      <button class="btn" id="openLetterBtn">
+        💌 Découvrir ma lettre d’amour
+      </button>
+    </div>
+
+    <!-- Message romantique -->
+    <section class="poem-card">
+      <h2>✨ Pour l’amour de ma vie</h2>
+
+      <p>
+        Dans le livre précieux de ma vie,
+        tu es ma plus belle histoire.<br>
+
+        Ton sourire est mon soleil,
+        ta voix ma mélodie,
+        et tes bras mon refuge.<br>
+
+        Joyeux anniversaire, mon amour.
+        Que la vie t’offre autant de bonheur
+        que tu en déposes dans mon cœur.
+      </p>
+    </section>
+
+    <!-- Souhaits d'anniversaire -->
+    <section class="wishes-grid">
+
+      <article class="wish-card">
+        <div class="icon">❤️</div>
+        <h3>Un amour sans fin</h3>
+        <p>
+          Que notre amour grandisse encore
+          et que nos cœurs restent unis
+          dans chaque saison de la vie.
+        </p>
+      </article>
+
+      <article class="wish-card">
+        <div class="icon">🌟</div>
+        <h3>Tes rêves les plus chers</h3>
+        <p>
+          Que cette nouvelle année t’ouvre
+          les portes de tes rêves
+          et t’apporte mille belles réussites.
+        </p>
+      </article>
+
+      <article class="wish-card">
+        <div class="icon">🎉</div>
+        <h3>Bonheur et douceur</h3>
+        <p>
+          Que chaque jour t’offre la santé,
+          la paix du cœur, des sourires sincères
+          et de merveilleuses surprises.
+        </p>
+      </article>
+
+    </section>
+
+  </main>
+
+  <!-- Lettre secrète -->
+  <div class="modal" id="letterModal">
+    <div class="modal-content">
+
+      <span
+        class="close-btn"
+        id="closeModal"
+        role="button"
+        aria-label="Fermer la lettre"
+      >&times;</span>
+
+      <div class="letter-body">
+
+        <h2>À toi, mon merveilleux Rüced ❤️</h2>
+
+        <p>
+          En ce jour merveilleux, je voudrais que tu sentes,
+          plus que jamais, combien tu es précieux à mes yeux.
+          Tu es bien plus qu’un amour : tu es une douceur
+          dans mes journées, une paix dans mon cœur
+          et l’un de mes plus beaux cadeaux de la vie.
+        </p>
+
+        <br>
+
+        <p>
+          Chaque instant à tes côtés devient un souvenir
+          que mon cœur garde précieusement.
+          Merci pour ta tendresse, ta patience, ta lumière
+          et cette façon unique que tu as de rendre
+          ma vie plus belle.
+        </p>
+
+        <br>
+
+        <p>
+          Que cette nouvelle année de ta vie soit remplie
+          de santé, de paix, de réussite et de rêves
+          qui deviennent réalité.
+          Que l’amour t’accompagne à chaque pas
+          et que ton sourire ne cesse jamais
+          d’illuminer le monde autour de toi.
+        </p>
+
+        <div class="letter-signature">
+          Joyeux anniversaire, mon BB adoré !<br>
+          À toi, aujourd’hui et pour tous les lendemains…<br>
+          Avec tout l’amour de mon cœur ❤️
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* =========================
+       JAVASCRIPT
+    ========================= */
+
+    // Animation des cœurs en arrière-plan
+    const canvas = document.getElementById("canvas-bg");
+    const ctx = canvas.getContext("2d");
+
+    function redimensionnerCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    redimensionnerCanvas();
+    window.addEventListener("resize", redimensionnerCanvas);
+
+    const particules = [];
+    const nombreParticules = 35;
+
+    class Particule {
+      constructor() {
+        this.reinitialiser();
+      }
+
+      reinitialiser() {
+        this.x = Math.random() * canvas.width;
+        this.y = canvas.height + Math.random() * 100;
+        this.taille = Math.random() * 12 + 8;
+        this.vitesseY = Math.random() * 1 + 0.5;
+        this.vitesseX = Math.random() * 0.5 - 0.25;
+        this.opacite = Math.random() * 0.5 + 0.3;
+      }
+
+      mettreAJour() {
+        this.y -= this.vitesseY;
+        this.x += this.vitesseX;
+
+        if (this.y < -20) {
+          this.reinitialiser();
+        }
+      }
+
+      dessiner() {
+        ctx.fillStyle = `rgba(190, 200, 215, ${this.opacite})`;
+        ctx.font = `${this.taille}px serif`;
+        ctx.fillText("♥", this.x, this.y);
+      }
+    }
+
+    for (let i = 0; i < nombreParticules; i++) {
+      particules.push(new Particule());
+    }
+
+    function animer() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      particules.forEach((particule) => {
+        particule.mettreAJour();
+        particule.dessiner();
+      });
+
+      requestAnimationFrame(animer);
+    }
+
+    animer();
+
+    // Gestion de la bougie
+    const flamme = document.getElementById("flame");
+    const boutonBougie = document.getElementById("toggleFlameBtn");
+
+    boutonBougie.addEventListener("click", () => {
+      flamme.classList.toggle("off");
+
+      if (flamme.classList.contains("off")) {
+        boutonBougie.textContent = "🕯️ Rallumer la bougie";
+      } else {
+        boutonBougie.textContent = "🕯️ Souffler la bougie";
+      }
+    });
+
+    // Gestion de la lettre secrète
+    const lettre = document.getElementById("letterModal");
+    const boutonLettre = document.getElementById("openLetterBtn");
+    const boutonFermer = document.getElementById("closeModal");
+
+    boutonLettre.addEventListener("click", () => {
+      lettre.style.display = "flex";
+    });
+
+    boutonFermer.addEventListener("click", () => {
+      lettre.style.display = "none";
+    });
+
+    // Fermer la lettre en cliquant à l'extérieur
+    window.addEventListener("click", (event) => {
+      if (event.target === lettre) {
+        lettre.style.display = "none";
+      }
+    });
+
+    // Fermer la lettre avec la touche Échap
+    window.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        lettre.style.display = "none";
+      }
+    });
+  </script>
+
+</body>
+</html>
